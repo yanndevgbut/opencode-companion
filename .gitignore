@@ -1,0 +1,10 @@
+node_modules
+.next
+dist
+packages/cli/web
+apps/web/public/monaco
+*.tgz
+playwright-report
+test-results
+.env
+.env.local
