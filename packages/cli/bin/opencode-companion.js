@@ -75,6 +75,7 @@ ${opts.noAuth ? "* Token authentication: DISABLED (--no-auth)\n" : ""}* Press Ct
     // Packaged standalone mode
     const { spawn } = await import("node:child_process");
     serverProcess = spawn(process.execPath, [standaloneServer], {
+      cwd: path.dirname(standaloneServer),
       env: { ...process.env, PORT: String(chosenPort), HOSTNAME: opts.host },
       stdio: "inherit",
     });

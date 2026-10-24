@@ -6,7 +6,6 @@ const nextConfig: NextConfig = {
     ignoreBuildErrors: true,
   },
   transpilePackages: ["@occ/schemas", "@occ/adapter", "@occ/core"],
-  serverExternalPackages: ["jsonc-parser", "ajv"],
 };
 
 export default nextConfig;
