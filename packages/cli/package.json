@@ -4,7 +4,7 @@
   "description": "Local dashboard to manage OpenCode configuration (providers, models, MCP, backups, diagnostics).",
   "type": "module",
   "bin": { "opencode-companion": "bin/opencode-companion.js" },
-  "files": ["bin", "dist", "web", "README.md", "LICENSE", "examples"],
+  "files": ["bin", "dist", "web", "README.md", "LICENSE", "examples", "assest"],
   "engines": { "node": ">=20.9" },
   "license": "MIT",
   "keywords": ["opencode", "config", "dashboard", "mcp", "localhost"],
