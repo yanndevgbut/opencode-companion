@@ -11,7 +11,6 @@
 
 <p align="center">
   <a href="https://www.npmjs.com/package/opencode-companion"><img src="https://img.shields.io/npm/v/opencode-companion?style=for-the-badge&logo=npm&logoColor=white&color=cb3837" alt="npm version"></a>
-  <a href="https://www.npmjs.com/package/opencode-companion"><img src="https://img.shields.io/npm/dt/opencode-companion?style=for-the-badge&logo=npm&logoColor=white&color=blue" alt="npm downloads"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-22c55e?style=for-the-badge" alt="License"></a>
   <img src="https://img.shields.io/badge/status-production-16a34a?style=for-the-badge" alt="Status">
 </p>
