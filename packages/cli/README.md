@@ -5,7 +5,7 @@
 <h1 align="center">OpenCode Companion</h1>
 
 <p align="center">
-  <strong>Local-First Web Dashboard & CLI Launcher untuk OpenCode Configuration</strong><br>
+  <strong>Local-First Web Dashboard & CLI Launcher for OpenCode Configuration</strong><br>
   Next.js 16 · TypeScript · Monaco Editor · Zero-Leak Privacy · JSONC Safe
 </p>
 
@@ -24,7 +24,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/platform-linux%20%7C%20macos%20%7C%20windows%20%7C%20android-94a3b8?style=for-the-badge" alt="Platform">
+  <img src="https://img.shields.io/badge/platform-linux%20%7C%20macos%20%7C%20windows%20%7C%20android-94a3b8?style=for-the-badge&logo=linux&logoColor=white" alt="Platform">
   <img src="https://img.shields.io/badge/network-loopback%20only-4f46e5?style=for-the-badge" alt="Loopback Only">
   <img src="https://img.shields.io/badge/secrets-zero--leak-success?style=for-the-badge" alt="Zero-Leak">
 </p>
@@ -39,32 +39,32 @@
 </p>
 
 <p align="center">
-  Indonesia · <a href="#english-summary">English Summary</a>
+  English · <a href="#ringkasan-bahasa-indonesia">Ringkasan Bahasa Indonesia</a>
 </p>
 
 ---
 
-## Ringkasan
+## Overview
 
-**OpenCode Companion** (`opencode-companion`) adalah dashboard lokal berbasis web dan CLI launcher resmi untuk mengelola konfigurasi [OpenCode](https://opencode.ai) secara aman, visual, dan instan.
+**OpenCode Companion** (`opencode-companion`) is a local-first web dashboard and CLI launcher designed to configure and manage [OpenCode](https://opencode.ai) securely, visually, and instantly.
 
-Dirancang untuk developer, AI engineer, dan power user: mengelola daftar LLM provider, memilih model default, menguji konektivitas server MCP (Model Context Protocol), mengedit `opencode.json` dengan preservasi komentar (JSONC), meninjau visual unified diff, serta memanfaatkan AI Assistant untuk memodifikasi pengaturan lewat instruksi natural language.
+Engineered for developers, AI engineers, and power users: manage LLM provider catalogs, switch active default models, test Model Context Protocol (MCP) tool servers, safely edit `opencode.json` with comment preservation (JSONC), review side-by-side unified diffs, and use an integrated AI Assistant to propose verified patches via natural-language prompts.
 
-Semua proses berjalan murni di perangkat lokal (`127.0.0.1`), tanpa telemetri luar, tanpa cloud backend, dan menerapkan sistem proteksi kredensial nol kebocoran (*zero secret leak*).
+Everything runs strictly on loopback (`127.0.0.1`), with zero external telemetry, no remote servers, and an airtight zero-secret-leak security model.
 
 <table>
 <tr>
 <td width="65%" valign="top">
 
-### Kenapa OpenCode Companion
+### Why OpenCode Companion
 
-- **Satu Perintah Instan**: Cukup jalankan `npx opencode-companion@latest`, browser langsung membuka dashboard konfigurasi siap pakai.
-- **Preservasi Komentar JSONC**: Mengubah konfigurasi tanpa merusak komentar struktur `//` atau `/* */` yang sudah ada di file `opencode.json`.
-- **Zero Secret Leak**: Kredensial API key disamarkan otomatis dengan HMAC-SHA256 placeholder (`{secret:hash}`) di Monaco editor maupun tampilan diff. Kunci rahasia tidak pernah terekspos mentah.
-- **Rollback Otomatis Satu Klik**: Snapshot cadangan (*point-in-time backup*) dibuat otomatis sebelum mutasi file dieksekusi ke disk.
-- **Validasi Schema Ketat**: Zod validator dan Monaco schema interaktif mencegah salah ketik format provider, model, atau parameter konteks.
-- **Safe MCP Runner**: Uji server MCP lokal via subprocess dengan dialog konfirmasi eksplisit untuk mencegah eksekusi kode tak terduga.
-- **AI Config Assistant**: Berikan prompt sederhana ("*Tambahkan provider Groq dengan model Llama-3.3-70b*"), asisten membuat rencana patch unified diff tervalidasi yang siap ditinjau sebelum di-apply.
+- **Instant Zero-Config Launch**: Run `npx opencode-companion@latest`, and your local browser immediately opens a ready-to-use configuration interface.
+- **JSONC Comment Preservation**: Modify keys without stripping developer comments (`//` or `/* */`) from your existing `opencode.json` files.
+- **Zero Secret Leaks**: Sensitive API keys and tokens are masked with HMAC-SHA256 placeholders (`{secret:hash}`) across the UI, Monaco editor, and diff view. Raw credentials are never leaked.
+- **One-Click Automated Rollback**: Immutable point-in-time snapshots are automatically taken before any mutation is applied to disk.
+- **Strict Schema Validation**: Backed by Zod validators and live Monaco schema checks to stop typos in provider, model, or context options before saving.
+- **Safe MCP Subprocess Runner**: Testing local MCP commands requires explicit human button confirmation to prevent arbitrary background code execution.
+- **AI Config Assistant**: Give plain-text instructions (e.g. *"Add Groq provider with Llama-3.3-70b model"*), and the assistant drafts a validated unified diff ready for your inspection.
 
 </td>
 <td width="35%" valign="middle">
@@ -82,86 +82,86 @@ Semua proses berjalan murni di perangkat lokal (`127.0.0.1`), tanpa telemetri lu
 
 ---
 
-## Daftar Isi
+## Table of Contents
 
-- [Fitur Utama](#fitur-utama)
-- [Model Keamanan & Privasi](#model-keamanan--privasi)
+- [Key Features](#key-features)
+- [Security & Privacy Architecture](#security--privacy-architecture)
 - [Quick Start](#quick-start)
-- [Opsi CLI](#opsi-cli)
-- [Hierarki Deteksi Konfigurasi](#hierarki-deteksi-konfigurasi)
-- [Modul & Tampilan Dashboard](#modul--tampilan-dashboard)
-- [Referensi REST API](#referensi-rest-api)
-- [Struktur Monorepo](#struktur-monorepo)
-- [Pengujian & Verifikasi Kualitas](#pengujian--verifikasi-kualitas)
+- [CLI Flags & Options](#cli-flags--options)
+- [Configuration Resolution Hierarchy](#configuration-resolution-hierarchy)
+- [Dashboard Modules](#dashboard-modules)
+- [REST API Reference](#rest-api-reference)
+- [Monorepo Architecture](#monorepo-architecture)
+- [Testing & Quality Verification](#testing--quality-verification)
 - [FAQ & Troubleshooting](#faq--troubleshooting)
-- [Kontribusi](#kontribusi)
-- [Lisensi](#lisensi)
+- [Contributing](#contributing)
+- [License](#license)
 
 ---
 
-## Fitur Utama
+## Key Features
 
-| Modul | Kemampuan & Fungsi |
+| Module | Core Capabilities |
 |---|---|
-| **Overview & Diagnostics** | Status instalasi binary `opencode`, inspeksi path aktif, cek izin baca/tulis disk, deteksi bentrok port, dan uji loopback. |
-| **Provider Manager** | Kelola OpenAI, Anthropic, Gemini, Groq, Ollama, OpenRouter, DeepSeek, vLLM, dan endpoint kustom. Mendukung literal key, `{env:VAR}`, atau `{file:path}`. |
-| **Model Catalog** | Pemilihan model default, konfigurasi token context window limit, multimodal capabilities (vision, reasoning, tool calling), dan parameter reasoning effort. |
-| **MCP Hub (Model Context Protocol)** | Tambah, edit, aktifkan/nonaktifkan server MCP remote (SSE/HTTP) maupun command lokal (`npx`, `python`, binary lokal) dengan tombol tes konektivitas interaktif. |
-| **Monaco Config Editor** | Editor visual terintegrasi berbasis VS Code Monaco, syntax highlighting JSONC, linter skema OpenCode real-time, dan perbandingan side-by-side diff sebelum menyimpan. |
-| **Backup & Rollback** | Riwayat snapshot otomatis per mutasi, metadata cap waktu, preview isi snapshot, tombol restore instan, dan ekspor arsip cadangan. |
-| **AI Config Assistant** | Agen pembantu pengaturan: cukup ketik kebutuhan dalam teks biasa, LLM merancang operasi terstruktur dan unified diff untuk persetujuan pengguna. |
+| **Overview & Diagnostics** | OpenCode binary detection, active configuration path resolution, read/write permission audit, port collision detection, and loopback connectivity check. |
+| **Provider Manager** | Manage OpenAI, Anthropic, Gemini, Groq, Ollama, OpenRouter, DeepSeek, vLLM, and custom endpoints. Supports literal secrets, `{env:VAR}`, and `{file:path}` references. |
+| **Model Catalog** | Default model switching, token context window limits, multimodal capabilities (vision, reasoning, tool calling), and reasoning effort controls. |
+| **MCP Hub (Model Context Protocol)** | Add, edit, and toggle remote MCP servers (SSE/HTTP) or local commands (`npx`, `python`, binaries) with interactive live connection probes. |
+| **Monaco Config Editor** | Integrated VS Code Monaco editor, real-time JSONC schema linting, auto-completion, and visual side-by-side diff review before committing. |
+| **Backup & Rollback** | Automated pre-mutation snapshots, timestamped audit log, snapshot inspection, instant one-click rollback, and backup archive export. |
+| **AI Config Assistant** | Natural-language assistant: supply a prompt, and the agent formulates structured JSON operations and a unified diff for explicit human approval. |
 
 ---
 
-## Model Keamanan & Privasi
+## Security & Privacy Architecture
 
-OpenCode Companion memprioritaskan keamanan absolut untuk aset kredensial pengguna:
+OpenCode Companion enforces strict defense-in-depth controls for local developer tools:
 
-| Aspek Keamanan | Mekanisme & Penjelasan |
+| Security Vector | Implementation Details |
 |---|---|
-| **Binding Loopback Ketat** | Server hanya mengikat antarmuka `127.0.0.1` secara default. Menolak permintaan dari jaringan luar (LAN/WLAN) kecuali pengguna sengaja memilih host lain. |
-| **Host Header Protection** | Server memeriksa header `Host` pada setiap request masuk. Permintaan dengan header domain mencurigakan langsung ditolak dengan `HTTP 403 Forbidden` (mencegah DNS rebinding). |
-| **One-Time Session Token** | Launcher menghasilkan token kriptografi acak saat startup. Browser memuat token via parameter URL dan memvalidasinya di middleware aplikasi. |
-| **Anti-CSRF & Origin Enforcement** | Seluruh mutasi `POST/PUT/DELETE` wajib menyertakan header proteksi `x-occ-csrf: 1` dan mencocokkan header `Origin` dengan origin loopback server. |
-| **Redaksi Rahasia (Zero Secret Leak)** | Nilai API key dan token otorisasi disaring menjadi token kriptografi HMAC-SHA256 (`{secret:hash}`). Kunci asli tidak pernah dikirim dalam payload respons frontend. |
-| **Konfirmasi Subprocess MCP** | Menjalankan perintah server MCP lokal membutuhkan persetujuan tombol klik dari pengguna untuk mencegah eksekusi perintah berbahaya di latar belakang. |
-| **Atomic File Operations** | Penulisan file konfigurasi dilakukan secara atomik melalui file temporer sebelum di-rename ke file target, meminimalkan risiko korupsi data saat sistem terhenti mendadak. |
+| **Strict Loopback Binding** | Binds exclusively to `127.0.0.1` by default. Requests from external networks (LAN/WLAN/WAN) are dropped at socket layer. |
+| **Host Header Validation** | Validates the incoming `Host` header on every HTTP request. Requests with untrusted domains are rejected with `HTTP 403 Forbidden` (mitigates DNS rebinding). |
+| **One-Time Session Token** | Launcher creates an ephemeral cryptographic token at startup. The web frontend authenticates via token query param, verified via middleware. |
+| **Anti-CSRF & Origin Verification** | All state-mutating requests (`POST/PUT/DELETE`) require the `x-occ-csrf: 1` header and enforce matching loopback `Origin`. |
+| **Zero Secret Leak (HMAC Masking)** | Sensitive API keys and tokens are transformed into deterministic HMAC-SHA256 masks (`{secret:hash}`). Plaintext keys never leave the server process. |
+| **MCP Subprocess Confirmation** | Executing local MCP command-line tools requires explicit human confirmation via UI modal to prevent malicious background process spawns. |
+| **Atomic File Transactions** | File writes target a temporary file first and atomically rename to the target path, eliminating corrupted configurations from crash events. |
 
 ---
 
 ## Quick Start
 
-### 1. Jalankan Langsung via NPX (Tanpa Instalasi)
+### 1. Launch with NPX (No Installation Required)
 
-Cara tercepat, tidak perlu mengotori sistem:
+Fastest method without polluting your system packages:
 
 ```bash
 npx opencode-companion@latest
 ```
 
-Atau lewati autentikasi token untuk penggunaan lokal yang ringkas:
+Bypass session token authentication for fast local developer access:
 
 ```bash
 npx opencode-companion@latest --no-auth
 ```
 
-### 2. Instalasi Global
+### 2. Global Installation
 
-Bila sering menggunakan Companion, pasang secara permanen:
+Install as a permanent CLI binary across your system:
 
 ```bash
 npm install -g opencode-companion@latest
 ```
 
-Setelah terpasang, jalankan perintah kapan saja:
+Once installed, run directly from any terminal:
 
 ```bash
 opencode-companion
 ```
 
-### 3. Jalankan dari Repositori Lokal
+### 3. Run from Source (Local Clone)
 
-Jika menggunakan source code langsung dari direktori clone:
+For contributors and local workspace development:
 
 ```bash
 git clone https://github.com/yanndevgbut/opencode-companion.git
@@ -171,7 +171,7 @@ npm run build
 npm start
 ```
 
-### Output Terminal Saat Berjalan
+### Terminal Startup Output
 
 ```text
 ==================================================
@@ -185,53 +185,53 @@ npm start
 
 ---
 
-## Opsi CLI
+## CLI Flags & Options
 
-Gunakan flag CLI untuk menyesuaikan port, direktori target, atau mode otentikasi:
+Customize port binding, configuration target directories, or authentication modes:
 
-| Opsi / Flag | Tipe | Default | Keterangan |
+| Option / Flag | Type | Default | Description |
 |---|---|---|---|
-| `-p, --port <number>` | Angka | `3000` | Port server yang diinginkan (otomatis mencari port berikutnya bila sibuk) |
-| `--host <string>` | String | `127.0.0.1` | Antarmuka jaringan untuk binding |
-| `--open` | Boolean | `false` | Otomatis membuka URL dashboard di browser bawaan |
-| `--config-dir <path>` | Path | *(otomatis)* | Direktori eksplisit tempat `opencode.json` berada |
-| `--project-dir <path>` | Path | `process.cwd()` | Direktori proyek yang memiliki `opencode.json` lokal |
-| `--token <string>` | String | *(acak hex)* | Kustom token otentikasi sesi |
-| `--no-auth` | Boolean | `false` | Nonaktifkan pengecekan token login di localhost |
-| `-h, --help` | - | - | Tampilkan bantuan perintah dan daftar opsi |
-| `-v, --version` | - | - | Tampilkan versi `opencode-companion` |
+| `-p, --port <number>` | Number | `3000` | Preferred port (automatically falls back to next free port if occupied) |
+| `--host <string>` | String | `127.0.0.1` | Network interface to bind |
+| `--open` | Boolean | `false` | Automatically open dashboard URL in default system browser |
+| `--config-dir <path>` | Path | *(auto)* | Explicit OpenCode config directory to manage |
+| `--project-dir <path>` | Path | `process.cwd()` | Project root containing a local `opencode.json` |
+| `--token <string>` | String | *(random hex)* | Custom session authentication token |
+| `--no-auth` | Boolean | `false` | Disable session token check for local loopback |
+| `-h, --help` | - | - | Display help menu and flag descriptions |
+| `-v, --version` | - | - | Display installed `opencode-companion` version |
 
-Contoh penggunaan tingkat lanjut:
+Advanced usage examples:
 
 ```bash
-# Memilih port spesifik dan membuka browser otomatis
+# Choose custom port and automatically launch browser
 opencode-companion --port 8080 --open
 
-# Menargetkan folder konfigurasi custom
+# Target specific configuration folder with auth disabled
 opencode-companion --config-dir ~/.config/opencode --no-auth
 ```
 
 ---
 
-## Hierarki Deteksi Konfigurasi
+## Configuration Resolution Hierarchy
 
-OpenCode Companion memindai dan mengenali file konfigurasi mengikuti standar resmi OpenCode:
+OpenCode Companion detects active configuration files in accordance with official OpenCode precedence rules:
 
 ```mermaid
 graph TD
-    A[Cari File Konfigurasi] --> B{Flag --config-dir / $OPENCODE_CONFIG_DIR?}
-    B -- Ya --> C[Gunakan Jalur Custom]
-    B -- Tidak --> D{Ada opencode.json di Project Dir?}
-    D -- Ya --> E[Gunakan Project Local Config]
-    D -- Tidak --> F{Ada ~/.config/opencode/opencode.json?}
-    F -- Ya --> G[Gunakan Global User Config]
-    F -- Tidak --> H{Ada Konfigurasi Sistem OS?}
-    H -- Ya --> I[Gunakan System Managed Config]
-    H -- Tidak --> J[Buat User Config Baru]
+    A[Locate Configuration] --> B{Explicit --config-dir or $OPENCODE_CONFIG_DIR?}
+    B -- Yes --> C[Use Custom Specified Path]
+    B -- No --> D{opencode.json in Current Project Dir?}
+    D -- Yes --> E[Use Project Local Config]
+    D -- No --> F{~/.config/opencode/opencode.json exists?}
+    F -- Yes --> G[Use Global User Config]
+    F -- No --> H{System-wide Managed Path exists?}
+    H -- Yes --> I[Use System Managed Config]
+    H -- No --> J[Initialize New User Config]
 ```
 
-1. **Custom Flag / Env**: `--config-dir`, `$OPENCODE_CONFIG_DIR`, atau `$OPENCODE_CONFIG`.
-2. **Project Local**: `./opencode.json` atau `./opencode.jsonc` di direktori proyek aktif.
+1. **Custom Flag / Env**: `--config-dir`, `$OPENCODE_CONFIG_DIR`, or `$OPENCODE_CONFIG`.
+2. **Project Local**: `./opencode.json` or `./opencode.jsonc` in active working directory.
 3. **Global User**: 
    - Linux / macOS / Android Termux: `~/.config/opencode/opencode.json`
    - Windows: `%USERPROFILE%\.config\opencode\opencode.json`
@@ -242,66 +242,66 @@ graph TD
 
 ---
 
-## Modul & Tampilan Dashboard
+## Dashboard Modules
 
-### 1. Dashboard & Status Diagnostik
-Memantau kesehatan instalasi binary `opencode`, membaca versi CLI yang aktif di sistem PATH, memeriksa izin berkas konfigurasi, serta menampilkan ringkasan jumlah provider dan server MCP yang aktif.
+### 1. Overview & Diagnostics
+Inspect OpenCode CLI binary status in system `PATH`, verify active configuration paths, audit filesystem permissions, and inspect current provider / MCP counts.
 
-### 2. Kelola Providers & API Keys
-Antarmuka visual untuk menambahkan provider baru maupun mengubah kredensial. Kredensial mendukung:
-- String literal API key (langsung di-redact saat disimpan).
-- Referensi environment variable: `{"apiKey": "{env:OPENAI_API_KEY}"}`.
-- Referensi file rahasia: `{"apiKey": "{file:/path/to/secret}"}`.
+### 2. Provider & Key Management
+Visual editor to register and configure LLM providers. Supports:
+- Literal API key input (automatically redacted into HMAC hash upon saving).
+- Environment variable references: `{"apiKey": "{env:OPENAI_API_KEY}"}`.
+- Secret file path references: `{"apiKey": "{file:/path/to/token}"}`.
 
-### 3. Model Catalog & Parameter
-Memilih model utama yang aktif untuk tugas coding. Mengatur nilai konteks, max tokens, dan toggle kapabilitas seperti reasoning effort atau image parsing.
+### 3. Model Catalog & Context Limits
+Switch primary default models. Configure token context bounds, maximum completion tokens, and capability flags (vision, reasoning effort, tool call invocation).
 
-### 4. Manajemen MCP Tool
-Daftar server Model Context Protocol yang terintegrasi dengan OpenCode:
-- **Tipe Remote**: Menghubungkan endpoint HTTP/SSE eksternal.
-- **Tipe Local Subprocess**: Menjalankan executable CLI (misal: `npx -y @modelcontextprotocol/server-filesystem`). Dilengkapi tombol ping untuk memverifikasi kesiapan komunikasi JSON-RPC.
+### 4. MCP Server Hub
+Manage Model Context Protocol tool integrations:
+- **Remote Providers**: Connect via HTTP/SSE endpoints.
+- **Local Subprocesses**: Spawn CLI tools (e.g., `npx -y @modelcontextprotocol/server-filesystem`). Includes interactive ping handshake checks.
 
-### 5. Editor Visual Monaco & JSONC Diff
-Menyediakan pengalaman edit manual bergaya VS Code langsung di peramban:
-- Auto-complete dan schema validation interaktif.
-- Mempertahankan komentar developer (`//` dan `/* */`).
-- Tinjauan split-diff side-by-side: melihat baris yang ditambah, diubah, atau dihapus sebelum tombol commit ditekan.
+### 5. Monaco Editor & Side-by-Side Diff
+Full code editing experience powered by VS Code Monaco:
+- Interactive JSONC validation against OpenCode schema.
+- Developer comments (`//` and `/* */`) strictly preserved.
+- Split-diff visualizer highlights additions, deletions, and updates before committing.
 
-### 6. Sistem Backup & Snapshot Rollback
-Setiap kali ada perubahan yang disimpan, Companion membuat berkas snapshot cadangan di direktori `~/.opencode-companion/backups/`. Jika konfigurasi rusak akibat salah input, cukup klik **Restore** untuk mengembalikan keadaan file ke titik tersebut dalam hitungan milidetik.
+### 6. Automated Backup & Rollback
+Companion creates an immutable snapshot under `~/.opencode-companion/backups/` before applying any file write. Revert accidental misconfigurations with instant one-click rollback.
 
 ---
 
-## Referensi REST API
+## REST API Reference
 
-Companion mengekspos API internal untuk komunikasi frontend dan otomatisasi lokal:
+Companion exposes a comprehensive local REST API for frontend navigation and automation scripts:
 
-| Endpoint | Method | Keterangan |
+| Endpoint | Method | Description |
 |---|---|---|
-| `/api/status` | `GET` | Statistik status runtime, deteksi instalasi binary, dan path file aktif. |
-| `/api/providers` | `GET, POST` | Mengambil daftar provider tervalidasi dan menambah/mengubah provider. |
-| `/api/providers/[id]/test` | `POST` | Menguji konektivitas network ke API endpoint provider. |
-| `/api/models` | `GET, POST` | Membaca model list dan memperbarui model default yang dipilih. |
-| `/api/mcp` | `GET, POST, DELETE` | Mengambil, mendaftarkan, atau mencopot server MCP. |
-| `/api/mcp/[name]/test` | `POST` | Menjalankan probe koneksi atau handshake ke server MCP tertentu. |
-| `/api/editor` | `GET, POST` | Mengambil raw content file JSONC dan menyimpan teks baru dengan validasi. |
-| `/api/backups` | `GET, POST` | Daftar arsip snapshot cadangan dan pemicu pembuatan snapshot manual. |
-| `/api/backups/[id]/restore` | `POST` | Mengembalikan file konfigurasi aktif ke snapshot spesifik. |
-| `/api/diagnostics` | `GET` | Menjalankan audit menyeluruh terkait izin akses dan format file. |
-| `/api/assistant` | `POST` | Merumuskan rencana perubahan via LLM prompt. |
-| `/api/assistant/apply` | `POST` | Mengaplikasikan rencana patch unified diff dari asisten ke file disk. |
+| `/api/status` | `GET` | Runtime statistics, binary installation status, and active config path. |
+| `/api/providers` | `GET, POST` | Retrieve active provider list or upsert new provider definitions. |
+| `/api/providers/[id]/test` | `POST` | Test network reachability and latency for a provider endpoint. |
+| `/api/models` | `GET, POST` | Read catalog and update default active model. |
+| `/api/mcp` | `GET, POST, DELETE` | Query, register, or remove MCP server definitions. |
+| `/api/mcp/[name]/test` | `POST` | Execute connection probe or handshake to a target MCP server. |
+| `/api/editor` | `GET, POST` | Read raw JSONC content or commit validated new content. |
+| `/api/backups` | `GET, POST` | List snapshot archive or trigger an on-demand manual snapshot. |
+| `/api/backups/[id]/restore` | `POST` | Restore configuration file to a specific historical snapshot. |
+| `/api/diagnostics` | `GET` | Run end-to-end audit for permissions, schemas, and loopback. |
+| `/api/assistant` | `POST` | Generate unified diff patch proposals via LLM instructions. |
+| `/api/assistant/apply` | `POST` | Atomically apply assistant unified diff patch to disk. |
 
-### Contoh Verifikasi via cURL
+### cURL Verification Examples
 
 ```bash
-# Cek status aplikasi lokal
+# Verify local application status
 curl -s http://127.0.0.1:3000/api/status
 
-# Menjalankan diagnostik sistem
+# Execute system diagnostics audit
 curl -s http://127.0.0.1:3000/api/diagnostics
 ```
 
-Contoh respons `/api/status`:
+Sample `/api/status` response:
 
 ```json
 {
@@ -322,42 +322,42 @@ Contoh respons `/api/status`:
 
 ---
 
-## Struktur Monorepo
+## Monorepo Architecture
 
 ```text
 opencode-companion/
-├── assest/                   # Logo, banner, dan aset visual identitas
+├── assest/                   # Branding assets and logo files
 │   └── logo.png
 ├── apps/
-│   └── web/                  # Next.js 16 Web Dashboard (App Router, Tailwind, Monaco)
+│   └── web/                  # Next.js 16 Web Dashboard (App Router, Tailwind CSS, Monaco)
 ├── packages/
-│   ├── schemas/              # Zod validator skema konfigurasi OpenCode resmi
-│   ├── opencode-adapter/     # Resolusi path OS, parsing JSONC, dan atomic file writer
-│   ├── core/                 # Engine diagnostik, backup manager, dan planner asisten AI
-│   └── cli/                  # CLI launcher, port finder, browser open, & packaged standalone
+│   ├── schemas/              # Zod validation schemas and OpenCode types
+│   ├── opencode-adapter/     # OS resolution, JSONC parser, atomic transactional file writer
+│   ├── core/                 # Diagnostics engine, backup manager, AI assistant planner
+│   └── cli/                  # CLI launcher, port finder, browser open, bundled standalone web
 ├── scripts/
-│   ├── build.mjs             # Pipeline bundler standalone multi-package
-│   └── smoke.mjs             # Suite pengujian integrasi & keamanan loopback
-└── tests/                    # Unit testing (Vitest)
+│   ├── build.mjs             # Multi-package standalone bundler pipeline
+│   └── smoke.mjs             # End-to-end loopback, security, and API test suite
+└── tests/                    # Unit tests (Vitest)
 ```
 
 ---
 
-## Pengujian & Verifikasi Kualitas
+## Testing & Quality Verification
 
-Setiap rilis diuji dengan suite pengujian otomatis:
+All releases are validated with automated suites:
 
 ```bash
-# 1. Jalankan unit test (Vitest)
+# 1. Run unit test suite (Vitest)
 npm test
 
-# 2. Validasi tipe TypeScript
+# 2. Run TypeScript strict type verification
 npm run typecheck
 
-# 3. Linter kode
+# 3. Code style linting
 npm run lint
 
-# 4. Smoke test integrasi (Keamanan, Auth Token, API, dan Loopback Binding)
+# 4. End-to-end smoke test (CLI startup, security filters, loopback, API routes)
 npm run smoke
 ```
 
@@ -365,46 +365,46 @@ npm run smoke
 
 ## FAQ & Troubleshooting
 
-### Q: Mengapa port default saya berbeda saat Companion menyala?
-**J:** Jika port `3000` sedang dipakai proses lain di sistem, Companion secara pintar memindai port berikutnya (`3001`, `3002`, dst.) dan mengikat port pertama yang kosong tanpa menyebabkan crash.
+### Q: Why does Companion select a different port than 3000?
+**A:** If port `3000` is currently bound by another service, Companion scans sequential ports (`3001`, `3002`, etc.) and binds the first free socket without throwing an error.
 
-### Q: Apakah data API Key saya dikirim ke server OpenCode Companion?
-**J:** Sama sekali tidak. Companion tidak memiliki server eksternal, telemetri analitik, maupun perantara cloud. Seluruh lalu lintas data berada 100% di loopback `127.0.0.1` perangkat Anda.
+### Q: Are my API keys ever transmitted to external servers?
+**A:** Never. Companion has no telemetry, no tracking analytics, and no external cloud servers. All network traffic is strictly confined to `127.0.0.1` on your local device.
 
-### Q: Apa yang terjadi jika file konfigurasi saya berisi komentar `//`?
-**J:** File tetap aman. Adapter Companion menggunakan parser JSONC kelas industri yang memperbarui nilai data tanpa menghapus komentar dokumentasi Anda.
+### Q: What happens to comments in my `opencode.json`?
+**A:** They are completely preserved. The companion adapter uses an industrial-grade JSONC parser that applies structural updates without stripping comments or whitespace.
 
-### Q: Bagaimana cara mematikan service?
-**J:** Cukup tekan kombinasi tombol `Ctrl + C` pada jendela terminal yang menjalankan Companion.
-
----
-
-## English Summary
-
-**OpenCode Companion** is an open-source, local-first web interface and CLI launcher designed to configure and manage [OpenCode](https://opencode.ai) locally. Key features include:
-
-- **Single command launch**: `npx opencode-companion@latest`.
-- **Zero secrets leaked**: HMAC-SHA256 placeholder masking for credentials.
-- **JSONC comment preservation**: Edit `opencode.json` safely without losing code comments.
-- **Interactive Monaco editor**: Schema validation with side-by-side visual diff reviews.
-- **Safety backups**: Automatic snapshots before each modification with instant rollback.
-- **Model Context Protocol (MCP)**: Easily configure SSE and local command tool servers.
-- **AI Config Assistant**: Prompt-driven configuration changes with human approval.
+### Q: How do I terminate the running service?
+**A:** Press `Ctrl + C` in the terminal session running Companion.
 
 ---
 
-## Kontribusi
+## Ringkasan Bahasa Indonesia
 
-Kontribusi kode, ide fitur, dan pelaporan bug sangat diterima!
-1. Fork repository ini.
-2. Buat branch fitur baru (`git checkout -b feat/nama-fitur`).
-3. Commit perubahan Anda (`git commit -m "feat: deskripsi perubahan"`).
-4. Push branch ke GitHub (`git push origin feat/nama-fitur`).
-5. Buat Pull Request baru.
+**OpenCode Companion** adalah dashboard lokal dan launcher CLI resmi untuk mengelola konfigurasi [OpenCode](https://opencode.ai) secara aman dan instan di perangkat lokal:
+
+- **Jalankan instan**: `npx opencode-companion@latest`.
+- **Zero secret leak**: API key disamarkan otomatis dengan placeholder HMAC-SHA256.
+- **Preservasi komentar JSONC**: Mengubah konfigurasi tanpa menghapus komentar `//`.
+- **Editor visual Monaco**: Validasi skema interaktif dengan peninjauan visual diff.
+- **Cadangan otomatis**: Snapshot dibuat otomatis sebelum file diubah, siap di-rollback.
+- **Model Context Protocol (MCP)**: Konfigurasi server HTTP/SSE dan command lokal.
+- **AI Config Assistant**: Instruksi natural-language dengan persetujuan manusia.
 
 ---
 
-## Lisensi
+## Contributing
 
-Didistribusikan di bawah lisensi open-source **MIT License**.  
+Contributions, bug reports, and feature proposals are welcome!
+1. Fork this repository.
+2. Create your feature branch (`git checkout -b feat/my-new-feature`).
+3. Commit your changes (`git commit -m "feat: add feature details"`).
+4. Push to your branch (`git push origin feat/my-new-feature`).
+5. Open a Pull Request.
+
+---
+
+## License
+
+Distributed under the open-source **MIT License**.  
 © 2026 [OpenCode Companion Contributors](https://github.com/yanndevgbut/opencode-companion).
